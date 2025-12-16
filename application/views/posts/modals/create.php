@@ -1,7 +1,7 @@
 <!-- Create Modal -->
 <div id="create" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
+        <a href="javascript:void(0)" class="close close-modal-btn">&times;</a>
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Create New Post</h2>
         <form id="create-form" method="post" action="<?= site_url('posts/create'); ?>" class="space-y-4">
             <div>
@@ -13,7 +13,7 @@
                 <textarea name="content" id="create-content" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none" placeholder="Enter post content" required></textarea>
             </div>
             <div class="flex justify-end space-x-4 mt-6">
-                <a href="#" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</a>
+                <a href="javascript:void(0)" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 close-modal-btn">Cancel</a>
                 <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Create</button>
             </div>
         </form>

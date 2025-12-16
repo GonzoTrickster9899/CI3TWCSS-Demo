@@ -7,6 +7,14 @@ class Posts extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        
+        $this->load->library('session');
+
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth/login');
+        }
+
         $this->json_file = APPPATH . 'data/posts.json';
         
         // Create data directory if it doesn't exist

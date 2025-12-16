@@ -5,50 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts App</title>
     <link href="<?= base_url('assets/css/output.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/custom.css'); ?>" rel="stylesheet">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal:target {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .modal-sm {
-            max-width: 400px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 20px;
-        }
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
@@ -56,8 +15,8 @@
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex justify-between items-center">
                 <h1 class="text-3xl font-bold text-gray-800">Posts App</h1>
-                <a href="#create" 
-                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200">
+                <a href="javascript:void(0)" data-modal="create"
+                   class="open-modal-btn inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
@@ -84,8 +43,8 @@
                             <td class="px-6 py-4 text-gray-600"><?= htmlspecialchars($p['content']); ?></td>
                             <td class="px-6 py-4 text-center">
                                 <div class="flex justify-center space-x-3">
-                                    <a href="#edit-<?= $p['id']; ?>" 
-                                       class="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors duration-150 font-medium text-sm">
+                                    <a href="javascript:void(0)" data-modal="edit-<?= $p['id']; ?>"
+                                       class="open-modal-btn inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors duration-150 font-medium text-sm">
                                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                         </svg>
@@ -131,6 +90,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openModalButtons = document.querySelectorAll('.open-modal-btn');
+            const closeModalButtons = document.querySelectorAll('.close-modal-btn');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.dataset.modal;
+                    const modal = document.getElementById(modalId);
+                    modal.classList.add('active');
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modal = button.closest('.modal');
+                    modal.classList.remove('active');
+                });
+            });
+        });
+
         // Confirm delete function
         function confirmDelete(postId, postTitle) {
             Swal.fire({
