@@ -1,7 +1,7 @@
 <!-- Edit Modal -->
 <div id="edit-<?= $post['id']; ?>" class="modal">
     <div class="modal-content">
-        <a href="#" class="close">&times;</a>
+        <a href="javascript:void(0)" class="close close-modal-btn">&times;</a>
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Post</h2>
         <form id="edit-form-<?= $post['id']; ?>" method="post" action="<?= site_url('posts/edit/'.$post['id']); ?>" class="space-y-4">
             <div>
@@ -13,7 +13,7 @@
                 <textarea name="content" id="content-<?= $post['id']; ?>" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"><?= htmlspecialchars($post['content']); ?></textarea>
             </div>
             <div class="flex justify-end space-x-4 mt-6">
-                <a href="#" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</a>
+                <a href="javascript:void(0)" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 close-modal-btn">Cancel</a>
                 <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Update</button>
             </div>
         </form>

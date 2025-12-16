@@ -7,6 +7,7 @@ class Blogs extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('session');
         $this->json_file = APPPATH . 'data/blogs.json';
         
         // Create data directory if it doesn't exist
@@ -52,7 +53,7 @@ class Blogs extends CI_Controller {
             
             // Return JSON response for AJAX
             header('Content-Type: application/json');
-            echo json_encode(['success' => true, 'message' => 'blog created successfully']);
+            echo json_encode(['success' => true, 'message' => 'Blog created successfully']);
             exit;
         }
     }
@@ -109,12 +110,12 @@ class Blogs extends CI_Controller {
             // Save to JSON file
             $this->save_blogs($blogs);
             
-            // Return JSON response for AJAX
+             // Return JSON response for AJAX
             header('Content-Type: application/json');
-            echo json_encode(['success' => true, 'message' => 'blog deleted successfully']);
+            echo json_encode(['success' => true, 'message' => 'Post deleted successfully']);
         } else {
             header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => 'blog not found']);
+            echo json_encode(['success' => false, 'message' => 'Post not found']);
         }
         exit;
     }

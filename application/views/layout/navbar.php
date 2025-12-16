@@ -9,6 +9,7 @@
                         CI3TWCSS
                     </span>
                     <span class="ml-2 text-sm text-gray-500 hidden sm:inline">Demo</span>
+                    <h2>Welcome, <?= $this->session->userdata('username'); ?></h2>
                 </a>
             </div>
 
@@ -21,6 +22,9 @@
                 <a href="<?= site_url('blogs'); ?>" 
                    class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 transition duration-200 ease-in-out">
                     Blogs
+                </a>
+                <a href="<?= site_url('auth/logout'); ?>"
+                    >Logout
                 </a>
             </div>
 

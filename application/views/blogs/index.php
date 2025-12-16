@@ -52,6 +52,20 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Flash Messages -->
+        <?php if ($this->session->flashdata('success')): ?>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
+                <p class="font-bold">Success</p>
+                <p><?= $this->session->flashdata('success'); ?></p>
+            </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')): ?>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+                <p class="font-bold">Error</p>
+                <p><?= $this->session->flashdata('error'); ?></p>
+            </div>
+        <?php endif; ?>
+
         <!-- Header Section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex justify-between items-center">
@@ -166,7 +180,7 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error!',
-                                text: 'Failed to delete blog. Please try again.',
+                                text: 'Failed to delete post. Please try again.',
                                 confirmButtonColor: '#ef4444'
                             });
                         }

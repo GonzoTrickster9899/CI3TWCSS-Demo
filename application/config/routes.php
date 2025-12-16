@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //$route['default_controller'] = 'pages/view';
-$route['default_controller'] = 'posts';
+//$route['default_controller'] = 'posts';
+$route['default_controller'] = 'auth/login';
 
 // For Posts pages
 $route['posts'] = 'posts/index';
